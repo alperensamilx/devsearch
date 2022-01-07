@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from .models import *
 from .forms import CustomUserCreationForm
 
+
 # Create your views here.
 
 
@@ -21,7 +22,7 @@ def login_user(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request, "The username you entered doesn't belong to an account. Please check your username and try again.")
+            messages.error(request,"The username you entered doesn't belong to an account. Please check your username and try again.")
 
         user = authenticate(request, username=username, password=password)
 
