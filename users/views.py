@@ -23,7 +23,7 @@ def login_user(request):
         try:
             user = User.objects.get(username=username)
         except:
-            messages.error(request,"The username you entered doesn't belong to an account. Please check your username and try again.")
+            messages.error(request, "The username you entered doesn't belong to an account. Please check your username and try again.")
 
         user = authenticate(request, username=username, password=password)
 
@@ -38,6 +38,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
+    messages.info(request, 'User was logged out!')
     return redirect('login')
 
 
@@ -101,7 +102,42 @@ def edit_account(request):
         if form.is_valid():
             form.save()
 
-            return redirect('account')
+            return redirect('edit-account')
 
     context = {'form': form}
     return render(request, 'users/profile_form.html', context)
+
+
+@login_required(login_url='login')
+def create_skill(request):
+    profile = request.user.profile
+    form = SkillForm()
+
+    if request.method == 'POST':
+        form = SkillForm(request.POST)
+        if form.is_valid():
+            skill = form.save(commit=False)
+            skill.owner =profile
+            skill.save()
+            messages.success(request, 'Skill was added successfully!')
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'users/skill_form.html', context)
+
+
+@login_required(login_url='login')
+def update_skill(request, pk):
+    profile = request.user.profile
+    skill = profile.skill_set.get(id=pk)
+    form = SkillForm(instance=skill)
+
+    if request.method == 'POST':
+        form = SkillForm(request.POST, instance=skill)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Skill was updated successfully!')
+            return redirect('account')
+
+    context = {'form': form}
+    return render(request, 'users/skill_form.html', context)
