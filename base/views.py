@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from .forms import *
-from .utlis import search_projects
+from .utlis import *
 
 
 # Create your views here.
@@ -9,10 +9,9 @@ from .utlis import search_projects
 
 def projects(request):
     projects, search_query = search_projects(request)
+    custom_range, projects =  pagination_projects(request, projects, 6)
 
-
-
-    context = {'projects': projects, 'search_query': search_query, 'paginator': paginator, 'custom_range': custom_range}
+    context = {'projects': projects, 'search_query': search_query, 'custom_range': custom_range}
     return render(request, 'base/projects.html', context)
 
 

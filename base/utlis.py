@@ -6,7 +6,6 @@ from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 def pagination_projects(request, projects, results):
 
     page = request.GET.get('page')
-    results = 3
     paginator = Paginator(projects, results)
 
     try:
@@ -18,12 +17,12 @@ def pagination_projects(request, projects, results):
         page = paginator.num_pages
         projects = paginator.page(page)
 
-    left_index = (int(page) - 1)
+    left_index = (int(page) - 4)
 
     if left_index < 1:
         left_index = 1
 
-    right_index = (int(page) + 2)
+    right_index = (int(page) + 5)
 
     if right_index > paginator.num_pages:
         right_index = paginator.num_pages + 1
