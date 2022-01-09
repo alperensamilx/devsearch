@@ -117,7 +117,7 @@ var document = window.document;
 				// Support: Firefox 64+, Edge 18+
 				// Some browsers don't support the "nonce" property on scripts.
 				// On the other hand, just using `getAttribute` is not enough as
-				// the `nonce` attribute is reset to an empty string whenever it
+				// the `nonce` attribute is reset_password_sent.html to an empty string whenever it
 				// becomes browsing-context connected.
 				// See https://github.com/whatwg/html/issues/2369
 				// See https://html.spec.whatwg.org/#nonce-attributes
@@ -5254,7 +5254,7 @@ jQuery.event = {
 			// If selector defined, determine special event api type, otherwise given type
 			type = ( selector ? special.delegateType : special.bindType ) || type;
 
-			// Update special based on newly reset type
+			// Update special based on newly reset_password_sent.html type
 			special = jQuery.event.special[ type ] || {};
 
 			// handleObj is passed to all event handlers
@@ -5685,7 +5685,7 @@ function leverageNative( el, type, expectSync ) {
 					value: jQuery.event.trigger(
 
 						// Support: IE <=9 - 11+
-						// Extend with the prototype to reset the above stopImmediatePropagation()
+						// Extend with the prototype to reset_password_sent.html the above stopImmediatePropagation()
 						jQuery.extend( saved[ 0 ], jQuery.Event.prototype ),
 						saved.slice( 1 ),
 						this
@@ -8542,7 +8542,7 @@ jQuery.extend( {
 					option = options[ i ];
 
 					// Support: IE <=9 only
-					// IE8-9 doesn't update selected after form reset (#2551)
+					// IE8-9 doesn't update selected after form reset_password_sent.html (#2551)
 					if ( ( option.selected || i === index ) &&
 
 							// Don't return options that are disabled or in a disabled optgroup
